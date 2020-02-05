@@ -3,13 +3,19 @@ package com.liyi.maven.common_utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @ClassName:  FileUtil   
+ * @Description: æ–‡ä»¶å·¥å…·ç±»  
+ * @date:   2020å¹´1æœˆ3æ—¥ ä¸Šåˆ9:06:40
+ */
 public class FileUtil {
 	/**
 	 * @Title: getExtName   
-	 * @Description: ÎÄ¼şÀ©Õ¹Ãû
+	 * @Description: æ–‡ä»¶æ‰©å±•å
 	 * @param: @param str
 	 * @param: @return      
 	 * @return: String      
@@ -20,28 +26,28 @@ public class FileUtil {
 			return null;
 		}
 		if(!str.contains(".")) {
-			throw new RuntimeException("ÎŞ·¨»ñÈ¡ÎÄ¼şÀ©Õ¹Ãû");
+			throw new RuntimeException("æ— æ³•è·å–æ–‡ä»¶æ‰©å±•å");
 		}
 		return str.substring(str.indexOf("."));
 	}
 	/**
 	 * @Title: delete   
-	 * @Description: µİ¹éÉ¾³ıÎÄ¼ş   
+	 * @Description: é€’å½’åˆ é™¤æ–‡ä»¶   
 	 * @param: @param file      
 	 * @return: void      
 	 * @throws
 	 */
 	public static void delete(File file) {
-		/** »ñÈ¡ÎÄ¼şÁĞ±í **/
+		/** è·å–æ–‡ä»¶åˆ—è¡¨ **/
 		File[] listFiles = file.listFiles();
 		for(File theFile : listFiles) {
-			/** Èç¹ûÊÇÎÄ¼ş¼Ğ£¬µİ¹éÉ¾³ı **/
+			/** å¦‚æœæ˜¯æ–‡ä»¶å¤¹ï¼Œé€’å½’åˆ é™¤ **/
 			if(theFile.isDirectory()) {
 				delete(theFile);
-				/** É¾³ı¿ÕÎÄ¼ş¼Ğ **/
+				/** åˆ é™¤ç©ºæ–‡ä»¶å¤¹ **/
 				theFile.delete();
 			}else {
-				/** Èç¹ûÊÇÎÄ¼ş£¬Ö±½ÓÉ¾³ı **/
+				/** å¦‚æœæ˜¯æ–‡ä»¶ï¼Œç›´æ¥åˆ é™¤ **/
 				theFile.delete();
 			}
 			
@@ -49,7 +55,7 @@ public class FileUtil {
 	}
 	/**
 	 * @Title: delete   
-	 * @Description: µİ¹éÉ¾³ıÎÄ¼ş   
+	 * @Description: é€’å½’åˆ é™¤æ–‡ä»¶   
 	 * @param: @param pathname      
 	 * @return: void      
 	 * @throws
@@ -58,7 +64,7 @@ public class FileUtil {
 		delete(new File(pathname));
 	}
 	/**
-	 * »ñÈ¡ÏµÍ³µ±Ç°ÓÃ»§Ä¿Â¼
+	 * è·å–ç³»ç»Ÿå½“å‰ç”¨æˆ·ç›®å½•
 	 * @return
 	 */
 	public static String getSystemUserHome() {
@@ -66,7 +72,7 @@ public class FileUtil {
 	}
 	/**
 	 * @Title: getSystemTempDirectory   
-	 * @Description: ²Ù×÷ÏµÍ³ÁÙÊ±Ä¿Â¼
+	 * @Description: æ“ä½œç³»ç»Ÿä¸´æ—¶ç›®å½•
 	 * @param: @return      
 	 * @return: String      
 	 * @throws
@@ -76,8 +82,8 @@ public class FileUtil {
 	}
 	/**
 	 * @Title: getFileSize   
-	 * @Description: »ñµÃÎÄ¼ş´óĞ¡
-	 * ·µ»ØÎÄ¼şÒÔÖ¸¶¨µ¥Î»´óĞ¡±íÊ¾
+	 * @Description: è·å¾—æ–‡ä»¶å¤§å°
+	 * è¿”å›æ–‡ä»¶ä»¥æŒ‡å®šå•ä½å¤§å°è¡¨ç¤º
 	 * File a.txt=2k  
 	 * @param: @param file
 	 * @param: @return      
@@ -91,7 +97,7 @@ public class FileUtil {
 	}
 	/**
 	 * @Title: readTextFile   
-	 * @Description: TODO(ÕâÀïÓÃÒ»¾ä»°ÃèÊöÕâ¸ö·½·¨µÄ×÷ÓÃ)   
+	 * @Description: TODO(è¿™é‡Œç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨)   
 	 * @param: @param file
 	 * @param: @return      
 	 * @return: String      
@@ -108,7 +114,7 @@ public class FileUtil {
 				sb.append("\r\n");
 			}while(br.read()!=-1);
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}finally {
 			StreamUtil.close(br);
@@ -117,7 +123,7 @@ public class FileUtil {
 	}
 	/**
 	 * @Title: readTextFileToList   
-	 * @Description: ¶ÁÈ¡ÎÄ±¾ÎÄ¼şµ½list   
+	 * @Description: è¯»å–æ–‡æœ¬æ–‡ä»¶åˆ°list   
 	 * @param: @param file
 	 * @param: @return      
 	 * @return: List<String>      
@@ -133,7 +139,7 @@ public class FileUtil {
 				list.add(readLine);
 			}while(br.read()!=-1);
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}finally {
 			StreamUtil.close(br);
@@ -142,7 +148,7 @@ public class FileUtil {
 	}
 	/**
 	 * @Title: readTextFileToList   
-	 * @Description: ¶ÁÈ¡ÎÄ±¾ÎÄ¼şµ½list   
+	 * @Description: è¯»å–æ–‡æœ¬æ–‡ä»¶åˆ°list   
 	 * @param: @param pathname
 	 * @param: @return      
 	 * @return: List<String>      
@@ -151,5 +157,4 @@ public class FileUtil {
 	public static List<String> readTextFileToList(String pathname){
 		return readTextFileToList(new File(pathname));
 	}
-	
 }

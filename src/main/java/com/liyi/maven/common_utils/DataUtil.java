@@ -1,5 +1,6 @@
 package com.liyi.maven.common_utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,7 +10,7 @@ public class DataUtil {
 	public static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	/**
 	 * @Title: format   
-	 * @Description: ¸ñÊ½»¯ÈÕÆÚ   
+	 * @Description: æ ¼å¼åŒ–æ—¥æœŸ   
 	 * @param: @param theDate
 	 * @param: @param format
 	 * @param: @return
@@ -23,7 +24,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: parse   
-	 * @Description: ½âÎöÈÕÆÚ   
+	 * @Description: è§£ææ—¥æœŸ   
 	 * @param: @param theDateStr
 	 * @param: @param format
 	 * @param: @return      
@@ -34,7 +35,7 @@ public class DataUtil {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
 		try {
 			return simpleDateFormat.parse(theDateStr);
-		} catch (Exception e) {
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -42,30 +43,30 @@ public class DataUtil {
 	
 	/**
 	 * @Title: getAge   
-	 * @Description: ¸ù¾İÖ¸¶¨ÈÕÆÚ¼ÆËãÄêÁä  
+	 * @Description: æ ¹æ®æŒ‡å®šæ—¥æœŸè®¡ç®—å¹´é¾„  
 	 * @param: @param theDate
 	 * @param: @return      
 	 * @return: int      
 	 * @throws
 	 */
 	public static int getAge(Date theDate) {
-		/** »ñÈ¡µ±Ç°ÈÕÆÚµÄÄêÔÂÈÕ **/
+		/** è·å–å½“å‰æ—¥æœŸçš„å¹´æœˆæ—¥ **/
 		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
 		int month = calendar.get(Calendar.MONTH);
 		int day = calendar.get(Calendar.DAY_OF_MONTH);
-		/** »ñÈ¡ÉúÈÕµÄÄêÔÂÈÕ **/
+		/** è·å–ç”Ÿæ—¥çš„å¹´æœˆæ—¥ **/
 		calendar.setTime(theDate);
 		int theYear = calendar.get(Calendar.YEAR);
 		int theMonth = calendar.get(Calendar.MONTH);
 		int theDay = calendar.get(Calendar.DAY_OF_MONTH);
-		/** ÄêÁä **/
+		/** å¹´é¾„ **/
 		int age = year-theYear;
-		/** ÅĞ¶ÏÔÂ·İ **/
+		/** åˆ¤æ–­æœˆä»½ **/
 		if(month<theMonth) {
 			age--;
 		}
-		/** ÅĞ¶ÏÈÕÆÚ **/
+		/** åˆ¤æ–­æ—¥æœŸ **/
 		if(month==theMonth && day<theDay) {
 			age--;
 		}
@@ -73,7 +74,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: getAge   
-	 * @Description: ¸ù¾İÖ¸¶¨ÈÕÆÚ¼ÆËãÄêÁä   
+	 * @Description: æ ¹æ®æŒ‡å®šæ—¥æœŸè®¡ç®—å¹´é¾„   
 	 * @param: @param theDateStr
 	 * @param: @return      
 	 * @return: int      
@@ -85,7 +86,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: getDayNum   
-	 * @Description: ÇóÁ½¸öÊ±¼äÖ®¼äµÄÌìÊı
+	 * @Description: æ±‚ä¸¤ä¸ªæ—¶é—´ä¹‹é—´çš„å¤©æ•°
 	 * @param: @param date1
 	 * @param: @param date2
 	 * @param: @return      
@@ -102,7 +103,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: getDayNum   
-	 * @Description: ÇóÁ½¸öÊ±¼äÖ®¼äµÄÌìÊı   
+	 * @Description: æ±‚ä¸¤ä¸ªæ—¶é—´ä¹‹é—´çš„å¤©æ•°   
 	 * @param: @param date1Str
 	 * @param: @param date2Str
 	 * @param: @return      
@@ -116,7 +117,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: getDayNum   
-	 * @Description: Î´À´»ò¹ıÈ¥¾àÀëÏÖÔÚ»¹ÓĞ¶àÉÙÌì   
+	 * @Description: æœªæ¥æˆ–è¿‡å»è·ç¦»ç°åœ¨è¿˜æœ‰å¤šå°‘å¤©   
 	 * @param: @param date1Str
 	 * @param: @return      
 	 * @return: int      
@@ -129,9 +130,9 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: compare   
-	 * @Description: 0-ÏàµÈ
-					1- date1´óÓÚdate2
-					-1 date1Ğ¡ÓÚdate2   
+	 * @Description: 0-ç›¸ç­‰
+					1- date1å¤§äºdate2
+					-1 date1å°äºdate2   
 	 * @param: @param date1
 	 * @param: @param date2
 	 * @param: @return      
@@ -151,7 +152,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: inWeek   
-	 * @Description: ÅĞ¶Ï¸ø¶¨µÄÈÕÆÚÊÇ·ñÔÚ±¾ÖÜÖ®ÄÚ   
+	 * @Description: åˆ¤æ–­ç»™å®šçš„æ—¥æœŸæ˜¯å¦åœ¨æœ¬å‘¨ä¹‹å†…   
 	 * @param: @param theDate
 	 * @param: @return      
 	 * @return: int      
@@ -160,13 +161,13 @@ public class DataUtil {
 	public static boolean inWeek(Date theDate) {
 		Calendar calendar = Calendar.getInstance();
 		int theDay = calendar.get(Calendar.DAY_OF_WEEK);
-		/** µ±Ç°ÖÜµ½µÚÒ»Ìì **/
+		/** å½“å‰å‘¨åˆ°ç¬¬ä¸€å¤© **/
 		calendar.set(Calendar.DAY_OF_WEEK, 1-theDay);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
 		Date startDate = calendar.getTime();
-		/** µ±Ç°ÖÜµ½×îºóÒ»Ìì **/
+		/** å½“å‰å‘¨åˆ°æœ€åä¸€å¤© **/
 		calendar.add(Calendar.DAY_OF_WEEK, 6);
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
 		calendar.set(Calendar.MINUTE, 59);
@@ -176,7 +177,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: inWeek   
-	 * @Description: ÅĞ¶Ï¸ø¶¨µÄÈÕÆÚÊÇ·ñÔÚ±¾ÖÜÖ®ÄÚ  
+	 * @Description: åˆ¤æ–­ç»™å®šçš„æ—¥æœŸæ˜¯å¦åœ¨æœ¬å‘¨ä¹‹å†…  
 	 * @param: @param theDateStr
 	 * @param: @return      
 	 * @return: boolean      
@@ -188,7 +189,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: inMonth   
-	 * @Description: ÅĞ¶ÏÖ¸¶¨ÈÕÆÚÊÇ·ñÔÚ±¾ÔÂ   
+	 * @Description: åˆ¤æ–­æŒ‡å®šæ—¥æœŸæ˜¯å¦åœ¨æœ¬æœˆ   
 	 * @param: @param theDate
 	 * @param: @return      
 	 * @return: boolean      
@@ -202,7 +203,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: inMonth   
-	 * @Description: ÅĞ¶ÏÖ¸¶¨ÈÕÆÚÊÇ·ñÔÚ±¾ÔÂ   
+	 * @Description: åˆ¤æ–­æŒ‡å®šæ—¥æœŸæ˜¯å¦åœ¨æœ¬æœˆ   
 	 * @param: @param theDateStr
 	 * @param: @return      
 	 * @return: boolean      
@@ -215,7 +216,7 @@ public class DataUtil {
 	
 	/**
 	 * @Title: getFirstDayOfMonth   
-	 * @Description: »ñÈ¡Ö¸¶¨ÈÕÆÚÔÂµÄ½áÊøµÄÊ±¼ä  
+	 * @Description: è·å–æŒ‡å®šæ—¥æœŸæœˆçš„ç»“æŸçš„æ—¶é—´  
 	 * @param: @param theDate
 	 * @param: @return      
 	 * @return: Date      
@@ -227,7 +228,7 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: getFirstDayOfMonth   
-	 * @Description: »ñÈ¡Ö¸¶¨ÈÕÆÚÔÂµÄµÚÒ»Ìì    
+	 * @Description: è·å–æŒ‡å®šæ—¥æœŸæœˆçš„ç¬¬ä¸€å¤©    
 	 * @param: @param theDateStr
 	 * @param: @return      
 	 * @return: Date      
@@ -239,27 +240,27 @@ public class DataUtil {
 	}
 	/**
 	 * @Title: getLastDayOfMonth   
-	 * @Description: »ñÈ¡Ö¸¶¨ÈÕÆÚÔÂ·İ½áÊøµÄÊ±¼ä
+	 * @Description: è·å–æŒ‡å®šæ—¥æœŸæœˆä»½ç»“æŸçš„æ—¶é—´
 	 * @param: @param theDate
 	 * @param: @return      
 	 * @return: Date      
 	 * @throws
 	 */
 	public static Date getLastDayOfMonth(Date theDate) {
-		/** È¡µ±ÔÂµÄµÚÒ»Ìì **/
+		/** å–å½“æœˆçš„ç¬¬ä¸€å¤© **/
 		Date firstDayOfMonth = getFirstDayOfMonth(theDate);
-		/** ÊµÀı»¯ÈÕÀú¿Ø¼ş **/
+		/** å®ä¾‹åŒ–æ—¥å†æ§ä»¶ **/
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(firstDayOfMonth);
-		/** ÏÂÔÂ1ºÅ **/
+		/** ä¸‹æœˆ1å· **/
 		calendar.add(Calendar.MONTH, 1);
-		/** ¼õ1Ãë£¬ÉÏÔÂµÄ×îºóÈÕÆÚ **/
+		/** å‡1ç§’ï¼Œä¸Šæœˆçš„æœ€åæ—¥æœŸ **/
 		calendar.add(Calendar.SECOND, -1);
 		return calendar.getTime();
 	}
 	/**
 	 * @Title: getLastDayOfMonth   
-	 * @Description: TODO(ÕâÀïÓÃÒ»¾ä»°ÃèÊöÕâ¸ö·½·¨µÄ×÷ÓÃ)   
+	 * @Description: TODO(è¿™é‡Œç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨)   
 	 * @param: @param theDateStr
 	 * @param: @return      
 	 * @return: Date      
@@ -269,10 +270,27 @@ public class DataUtil {
 		Date theDate = parse(theDateStr, "yyyy-MM-dd HH:mm:ss");
 		return getLastDayOfMonth(theDate);
 	}
+	/**
+	 * @Title: getRandomDate   
+	 * @Description: è·å–éšæœºæ—¶é—´ 
+	 * @param: @param date1
+	 * @param: @param date2
+	 * @param: @return      
+	 * @return: Date      
+	 * @throws
+	 */
+	public static Date getRandomDate(Date date1,Date date2) {
+		Long randomLong = Math.abs(date1.getTime()-date2.getTime());
+		long random = (long) (randomLong*Math.random());
+		long newDateLong = compare(date1, date2)==1?date2.getTime()+random:date1.getTime()+random;
+		return new Date(newDateLong);
+	}
 	
 	
 	public static void main(String[] args) {
-		
-		System.out.println(format(getLastDayOfMonth("2020-02-06 12:33:33"), "yyyy-MM-dd HH:mm:ss"));
+		Date date1= parse("2020-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss");
+		Date date2 = new Date();
+		Date randomDate = getRandomDate(date1, date2);
+		System.out.println(format(randomDate, "yyyy-MM-dd HH:mm:ss"));
 	}
 }
