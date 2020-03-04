@@ -8,6 +8,33 @@ import java.util.Date;
 public class DateUtil {
 	public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	public static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	
+	//获得指定时间之前的时间    	  列如	    获得两小时前的时间
+	public static String getDate() {
+		//一天有多少毫秒
+		
+		return "";
+	}
+	
+	
+	//通过当前时间获得20小时之前的时间
+	public static String getDate24Hour() {
+		//获得当前系统时间
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH);
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		int hour = calendar.get(Calendar.HOUR_OF_DAY);
+		int minute = calendar.get(Calendar.MINUTE);
+		int second = calendar.get(Calendar.SECOND);
+		calendar.set(year, month, day-1, hour, minute, second);
+		Date date = calendar.getTime();
+		String format = dateTimeFormat.format(date);
+		return format;
+	}
+	
+	
 	/**
 	 * @Title: format   
 	 * @Description: 格式化日期   

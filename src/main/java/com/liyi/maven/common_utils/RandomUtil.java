@@ -14,10 +14,7 @@ public class RandomUtil {
 	 */
 	public static int random(int min,int max) {
 		Random random = new Random();
-		int nextInt = random.nextInt(max-min+1);
-		if(nextInt<min) {
-			return random(min,max);
-		}
+		int nextInt = random.nextInt(max-min)+min;
 		return nextInt;
 	}
 	
@@ -38,10 +35,11 @@ public class RandomUtil {
 		}
 		return intArray;
 	}
+
 	
 	public static void main(String[] args) {
 		for(int i=0;i<100;i++) {
-			System.out.println(random(1,2));
+			System.out.println(random(500,550));
 		}
 	}
 

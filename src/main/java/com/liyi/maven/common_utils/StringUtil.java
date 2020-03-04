@@ -9,6 +9,14 @@ import java.util.Random;
  * @date:   2020年1月3日 上午9:08:16
  */
 public class StringUtil {
+	
+	/**
+	 * 功能说明：实现判断传入的字符串是否为包含http的url地址
+	 */
+	public static boolean isHttpUrl(String src){
+		return src.startsWith("http:");
+	}
+	
 	/**
 	 * @Title: isNull   
 	 * @Description: 判断字符串是否为空   
@@ -245,9 +253,79 @@ public class StringUtil {
 		return name1 + name2;
 	}
 	
+	/**
+	 * @Title: randomSex 
+	 * @Description: 返回随机性别（男|女）
+	 * @return
+	 * @return: String
+	 */
+	public static String randomSex() {
+		String[] sex = { "男", "女"};
+		return sex[RandomUtil.random(0, 1)];
+	}
+	
+	/**
+	 * @Title: getRandomPhone 
+	 * @Description: 获取随机的电话号以13开头
+	 * @return
+	 * @return: String
+	 */
+	public static String getRandomPhone() {
+		String regex = "13";
+		Random random = new Random();
+		for (int i = 0; i < 9; i++) {
+			char c = (char)('0'+random.nextInt(10));
+			regex+=c;
+		}
+		return regex;
+	}
+	
+	/**
+	 * @Title: getRandomEmail 
+	 * @Description: 获取随机的邮箱
+	 * @return
+	 * @return: String
+	 */
+	public static String getRandomEmail() {
+		String[] sex = { "@qq.com", "@163.com", "@sian.com", "@gmail.com", "@sohu.com", "@hotmail.com", "@foxmail.com"};
+		String email = "";
+		Random random = new Random();
+		for (int i = 0; i < 20; i++) {
+			char c = (char)('0'+random.nextInt(10));
+			email+=c;
+			if(i>=3) {
+				String[] suijishu = { "0", "1"};
+				if(suijishu[RandomUtil.random(0, 1)].equals("0")) {
+					break;
+				}
+				if(suijishu[RandomUtil.random(0, 1)].equals("1")) {
+					continue;
+				}
+				
+			}
+		}
+		return email+sex[RandomUtil.random(0, 6)];
+	}
+	
+	/**
+	 * @Title: getRandomBirthday 
+	 * @Description: 获取随机的生日
+	 * @return
+	 * @return: String
+	 */
+	public static String getRandomBirthday() {
+		Random random = new Random();
+		String nian = "";
+		String yue = "";
+		String ri = "";
+		nian = nian+random.nextInt(2020+1);
+		yue=yue+random.nextInt(12-0+1);
+		ri=ri+random.nextInt(30-0+1);
+		return nian+"-"+yue+"-"+ri;
+	}
 	
 	public static void main(String[] args) {
-		for(int i=0;i<100;i++)
-		System.out.println(randomChineseName());
+		String randomBirthday = getRandomBirthday();
+		System.out.println(randomBirthday);
 	}
 }
